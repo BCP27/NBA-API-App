@@ -119,7 +119,7 @@ $(document).ready(function () {
                             StatArray.push(data["resultSets"][0]["rowSet"][0][typestat]);                     
                         }
                     });
-                    sleep(500);
+                    sleep(100);
                     $.ajax({
                         url: "http://stats.nba.com/stats/teamdashboardbygeneralsplits?SeasonType=Regular Season&TeamID=" + teamID + "&MeasureType=" + IsOpp2 + "&PerMode=Per100Possessions&PlusMinus=N&PaceAdjust=N&Rank=N&Season=2014-15&Outcome= &Location= &Month=0&SeasonSegment= &DateFrom= &DateTo= &OpponentTeamID=0&VsConference= &VsDivision= &GameSegment= &Period=0&LastNGames=0",
                         success: function (data) {
