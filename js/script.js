@@ -100,12 +100,7 @@ $(document).ready(function () {
                         IsOpp = "Opponent";
                     
                     
-                    if ($("#name").val() == "Opponent Field Goal %" || $("#name").val() == "Field Goal %")
-                        typestat = 10;
-                    if ($("#name").val() == "Opponent Free Throws Attempted per 100 Possessions" || $("#name").val() == "Free Throws Attempted per 100 Possessions")
-                        typestat = 15;
-                    if ($("#name").val() == "Opponent Assists per 100 Possessions" || $("#name").val() == "Assists per 100 Possessions")
-                        typestat = 20;
+                    
                     
                     var IsOpp2 = "Base";                  
                     if ($("#perunit").val() == "Opponent Field Goal %" || $("#perunit").val() == "Opponent Free Throws Attempted per 100 Possessions" || $("#perunit").val() == "Opponent Assists per 100 Possessions")
@@ -115,6 +110,12 @@ $(document).ready(function () {
                         url: "http://stats.nba.com/stats/teamdashboardbygeneralsplits?SeasonType=Regular Season&TeamID=" + teamID + "&MeasureType=" + IsOpp + "&PerMode=Per100Possessions&PlusMinus=N&PaceAdjust=N&Rank=N&Season=2014-15&Outcome= &Location= &Month=0&SeasonSegment= &DateFrom= &DateTo= &OpponentTeamID=0&VsConference= &VsDivision= &GameSegment= &Period=0&LastNGames=0",
                         success: function (data) 
                         {    
+                            if ($("#name").val() == "Opponent Field Goal %" || $("#name").val() == "Field Goal %")
+                                typestat = 10;
+                            if ($("#name").val() == "Opponent Free Throws Attempted per 100 Possessions" || $("#name").val() == "Free Throws Attempted per 100 Possessions")
+                                typestat = 15;
+                            if ($("#name").val() == "Opponent Assists per 100 Possessions" || $("#name").val() == "Assists per 100 Possessions")
+                                typestat = 20;
                             StatTotal = StatTotal + data["resultSets"][0]["rowSet"][0][typestat];
                             StatArray.push(data["resultSets"][0]["rowSet"][0][typestat]);                     
                         }
