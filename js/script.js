@@ -19,6 +19,15 @@ $(document).ready(function () {
     WorkSpace.append($("<select>").attr("id", "perunit"));
     WorkSpace.append(Submit);
     
+    function sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds){
+                break;
+            }
+        }
+    }
+    
     function correlation(arrayX, arrayY)
     {
         var z = 0;
@@ -101,7 +110,7 @@ $(document).ready(function () {
                     var IsOpp2 = "Base";                  
                     if ($("#perunit").val() == "Opponent Field Goal %" || $("#perunit").val() == "Opponent Free Throws Attempted per 100 Possessions" || $("#perunit").val() == "Opponent Assists per 100 Possessions")
                         IsOpp2 = "Opponent";
-                            
+                    var j = i + 1
                     $.ajax({
                         url: "http://stats.nba.com/stats/teamdashboardbygeneralsplits?SeasonType=Regular Season&TeamID=" + teamID + "&MeasureType=" + IsOpp + "&PerMode=Per100Possessions&PlusMinus=N&PaceAdjust=N&Rank=N&Season=2014-15&Outcome= &Location= &Month=0&SeasonSegment= &DateFrom= &DateTo= &OpponentTeamID=0&VsConference= &VsDivision= &GameSegment= &Period=0&LastNGames=0",
                         success: function (data) 
@@ -110,6 +119,7 @@ $(document).ready(function () {
                             StatArray.push(data["resultSets"][0]["rowSet"][0][typestat]);                     
                         }
                     });
+                    sleep(500);
                     $.ajax({
                         url: "http://stats.nba.com/stats/teamdashboardbygeneralsplits?SeasonType=Regular Season&TeamID=" + teamID + "&MeasureType=" + IsOpp2 + "&PerMode=Per100Possessions&PlusMinus=N&PaceAdjust=N&Rank=N&Season=2014-15&Outcome= &Location= &Month=0&SeasonSegment= &DateFrom= &DateTo= &OpponentTeamID=0&VsConference= &VsDivision= &GameSegment= &Period=0&LastNGames=0",
                         success: function (data) {
