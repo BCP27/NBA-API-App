@@ -91,6 +91,7 @@ $(document).ready(function () {
                 var StatArray = [];
                 var StatArray2 = [];
                 var StatArray3 = [];
+                var StatArray4 = [];
                 var counter = 0;
                 for (i = 0; i < teams.length; i = i + 1){
                     var teamID = teams[i]["id"];
@@ -117,7 +118,8 @@ $(document).ready(function () {
                             if ($("#name").val() == "Opponent Assists per 100 Possessions" || $("#name").val() == "Assists per 100 Possessions")
                                 typestat = 20;
                             StatTotal = StatTotal + data["resultSets"][0]["rowSet"][0][typestat];
-                            StatArray.push(data["resultSets"][0]["rowSet"][0][typestat]);                     
+                            StatArray.push(data["resultSets"][0]["rowSet"][0][typestat]);
+                            StatArray4.push([data["resultSets"][0]["headers"][typestat]])
                         }
                     });
                     sleep(500);
@@ -139,6 +141,7 @@ $(document).ready(function () {
                                 console.log(StatArray);
                                 console.log(StatArray2);
                                 console.log(StatArray3);
+                                console.log(StatArray4);
                                 StatTotal = StatTotal / 30;
                                 var Pcorrelation = $("<h3>");
                                 Pcorrelation.attr("role", "alert");
